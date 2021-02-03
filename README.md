@@ -1,8 +1,8 @@
 # Desafio TDSA
 
 - [x] Criar uma tela com um grid e alguns filtros.
-- [ ] Usar os endpoints para poder fazer as requisições: https://jsonplaceholder.typicode.com/
-- [ ] Cada linha da tabela tem que der um botão de editar e excluir.
+- [x] Usar os endpoints para poder fazer as requisições: https://jsonplaceholder.typicode.com/
+- [x] Cada linha da tabela tem que der um botão de editar e excluir.
 - [ ] A inserção deve ser feita a partir de um botão que quando clicado deve abrir um modal. O header do modal deve ter um
       titulo dizendo se esta editando ou inserindo um novo item.
 - [ ] O footer do modal deve ter um botao de fechar, salvar e um salvar e continuar.
