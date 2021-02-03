@@ -10,7 +10,11 @@ export default createGlobalStyle`
   }
 
   body {
-    background: red;
+    background: #fef;
+  }
+
+  html, body, #root{
+    height: 100%;
   }
 
   button {

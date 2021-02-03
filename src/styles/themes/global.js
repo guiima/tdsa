@@ -2,7 +2,7 @@ const theme = {
   title: "global",
 
   colors: {
-    background: "blue",
+    // background: "#fef",
   },
 };
 

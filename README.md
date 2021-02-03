@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Desafio TDSA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [x] Criar uma tela com um grid e alguns filtros.
+- [ ] Usar os endpoints para poder fazer as requisições: https://jsonplaceholder.typicode.com/
+- [ ] Cada linha da tabela tem que der um botão de editar e excluir.
+- [ ] A inserção deve ser feita a partir de um botão que quando clicado deve abrir um modal. O header do modal deve ter um
+      titulo dizendo se esta editando ou inserindo um novo item.
+- [ ] O footer do modal deve ter um botao de fechar, salvar e um salvar e continuar.
+- [ ] O botao fechar, fecha o modal.
+- [ ] O de salvar irá fazer submit no form e fechar o modal.
+- [ ] O de salvar e continuar ira salvar, limpar os campos e continuar no modal.
+- [ ] O modal deve ter 2 forms, sendo o 1º o form principal e o 2º como form secundário.
+- [ ] O 2º form deve ter os campos, uma tabela e um botão de inserir.
+- [ ] Quando clicar no botão de inserir do segundo form, caso não esteja fazendo uma edição, o mesmo deverá salvar o 1º
+      form e só então poderá salvar o 2º form. Caso esteja fazendo uma edição, poderá salvar normalmente.
+- [ ] Para cada inserção do segundo form, os campos serão limpos e uma linha sera inserida na tabela.
+- [ ] Para poder inserir o 2º form, deve conter o ID do 1º form. Ou seja, quando estiver editando deverá conter o ID
+      da edição e quando for inserção, deverá conter o ID retornado da API de inserção.
+- [ ] Ao salvar e continuar, deverá limpar todos os campos do primeiro form e do segundo form (a tabela também).
+- [ ] Ao fechar o modal, todos os dados que estavam no modal devem ser limpos para quando abrir o modal novamente vir zerado.
 
-## Available Scripts
+Exemplo pratico com as API's do jsonplaceholder:
 
-In the project directory, you can run:
+- [ ] O 1º form será o "POST" e o 2º form os "COMMENTS". Ao abrir o modal para inserção, o usuário irá preencher os
+      dados "TITLE" e "BODY". Após preencher, irá no form de "COMMENTS" e irá preencher os campos de
+      "NAME", "EMAIL" e "BODY". Ao clicar para inserir um comentário, irá primeiro salvar o post, depois irá pegar o
+      ID retornado e irá salvar o comentário passando o "POSTID" o ID retornado e então irá salvar o comentário.
+      Ao salvar o comentário irá inserir uma linha na tabela, limpar os campos do comentário e irá manter os do
+      post, pois será possível inserir vários comentários.
 
-### `yarn start`
+- [ ] Quando estiver editando um post, será possível inserir comentários também, porém se o usuário não
+      modificar nada do form do POST não será necessário fazer a chamada de edição, pois o form já tem um "POSTID"
+      que é o ID da edição,
+      caso o usuário modifique o form do POST, será necessário chamar a API de edição do post antes de inserir um novo comentário.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] O botão de salvar / salvar e continuar do modal irá submeter somente o 1º form (POST) e não irá influenciar o 2º form (COMMENTS).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O que usar?
 
-### `yarn test`
+- [ ] React, react hooks e react context;
+- [ ] Fetch (não utilizar Axios)
+- [ ] Javascript (Typescript é diferencial, não usamos no projeto)
+- [ ] MaterialUI
+- [ ] React-hook-form ou Formik
+- [ ] Redux (se necessário)
+- [ ] Styled-components ou SCSS
+- [ ] Fazer commits constantes, para cada feature
+- [ ] Teste automatizado (Jest + React Testing Library) (Não precisa cobrir o projeto com testes, mas faça alguns
+      para poder avaliar seus conhecimentos)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Diferenciais:
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [ ] Conseguir fazer modificações nos componentes do MaterialUI com o makeStyle (não utilizar withStyle)
+- [ ] Responsividade em telas pequenas e grandes.
+- [ ] Criar hooks personalizados
+- [ ] Reutilizar códigos
+- [ ] Não utilizar ClassComponent / PureComponent
+- [ ] Traduções entre idiomas, se fizer 1 só já vale, o importante é saber usar (usar a biblioteca react-i18next)
+- [ ] Ser criativo nas interfaces
+- [ ] Fazer um tema de cores com styled components
