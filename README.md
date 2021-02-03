@@ -3,10 +3,10 @@
 - [x] Criar uma tela com um grid e alguns filtros.
 - [x] Usar os endpoints para poder fazer as requisições: https://jsonplaceholder.typicode.com/
 - [x] Cada linha da tabela tem que der um botão de editar e excluir.
-- [ ] A inserção deve ser feita a partir de um botão que quando clicado deve abrir um modal. O header do modal deve ter um
+- [x] A inserção deve ser feita a partir de um botão que quando clicado deve abrir um modal. O header do modal deve ter um
       titulo dizendo se esta editando ou inserindo um novo item.
-- [ ] O footer do modal deve ter um botao de fechar, salvar e um salvar e continuar.
-- [ ] O botao fechar, fecha o modal.
+- [x] O footer do modal deve ter um botao de fechar, salvar e um salvar e continuar.
+- [x] O botao fechar, fecha o modal.
 - [ ] O de salvar irá fazer submit no form e fechar o modal.
 - [ ] O de salvar e continuar ira salvar, limpar os campos e continuar no modal.
 - [ ] O modal deve ter 2 forms, sendo o 1º o form principal e o 2º como form secundário.
@@ -37,24 +37,24 @@ Exemplo pratico com as API's do jsonplaceholder:
 
 O que usar?
 
-- [ ] React, react hooks e react context;
-- [ ] Fetch (não utilizar Axios)
-- [ ] Javascript (Typescript é diferencial, não usamos no projeto)
-- [ ] MaterialUI
+- [x] React, react hooks e react context;
+- [x] Fetch (não utilizar Axios)
+- [x] Javascript (Typescript é diferencial, não usamos no projeto)
+- [x] MaterialUI
 - [ ] React-hook-form ou Formik
 - [ ] Redux (se necessário)
-- [ ] Styled-components ou SCSS
-- [ ] Fazer commits constantes, para cada feature
+- [x] Styled-components ou SCSS
+- [x] Fazer commits constantes, para cada feature
 - [ ] Teste automatizado (Jest + React Testing Library) (Não precisa cobrir o projeto com testes, mas faça alguns
       para poder avaliar seus conhecimentos)
 
 Diferenciais:
 
-- [ ] Conseguir fazer modificações nos componentes do MaterialUI com o makeStyle (não utilizar withStyle)
-- [ ] Responsividade em telas pequenas e grandes.
+- [x] Conseguir fazer modificações nos componentes do MaterialUI com o makeStyle (não utilizar withStyle)
+- [x] Responsividade em telas pequenas e grandes.
 - [ ] Criar hooks personalizados
-- [ ] Reutilizar códigos
-- [ ] Não utilizar ClassComponent / PureComponent
+- [x] Reutilizar códigos
+- [x] Não utilizar ClassComponent / PureComponent
 - [ ] Traduções entre idiomas, se fizer 1 só já vale, o importante é saber usar (usar a biblioteca react-i18next)
-- [ ] Ser criativo nas interfaces
+- [x] Ser criativo nas interfaces
 - [ ] Fazer um tema de cores com styled components

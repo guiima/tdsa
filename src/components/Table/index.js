@@ -12,13 +12,13 @@ import TablePagination from "@material-ui/core/TablePagination";
 import { makeStyles } from "@material-ui/core/styles";
 import { getPosts } from "../../services/posts";
 import TablePaginationActions from "./TablePaginationActions";
+import ButtonEdit from "../PostModal";
 
 import { Container } from "./styles";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 350,
-    maxWidth: 900,
+    maxWidth: 950,
   },
 });
 
@@ -86,15 +86,7 @@ const TableComponent = () => {
                 <TableCell align="center">{post.title}</TableCell>
                 <TableCell align="center">{post.body}</TableCell>
                 <TableCell align="center">
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    color="primary"
-                    className={classes.margin}
-                    onClick={() => console.log("edit postId", post.id)}
-                  >
-                    Edit
-                  </Button>
+                  <ButtonEdit post={post} textButton="Edit" />
                 </TableCell>
                 <TableCell align="center">
                   <Button
