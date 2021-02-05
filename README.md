@@ -19,19 +19,19 @@
 
 Exemplo pratico com as API's do jsonplaceholder:
 
-- [ ] O 1º form será o "POST" e o 2º form os "COMMENTS". Ao abrir o modal para inserção, o usuário irá preencher os
-      dados "TITLE" e "BODY". Após preencher, irá no form de "COMMENTS" e irá preencher os campos de
-      "NAME", "EMAIL" e "BODY". Ao clicar para inserir um comentário, irá primeiro salvar o post, depois irá pegar o
-      ID retornado e irá salvar o comentário passando o "POSTID" o ID retornado e então irá salvar o comentário.
-      Ao salvar o comentário irá inserir uma linha na tabela, limpar os campos do comentário e irá manter os do
-      post, pois será possível inserir vários comentários.
+- O 1º form será o "POST" e o 2º form os "COMMENTS". Ao abrir o modal para inserção, o usuário irá preencher os
+  dados "TITLE" e "BODY". Após preencher, irá no form de "COMMENTS" e irá preencher os campos de
+  "NAME", "EMAIL" e "BODY". Ao clicar para inserir um comentário, irá primeiro salvar o post, depois irá pegar o
+  ID retornado e irá salvar o comentário passando o "POSTID" o ID retornado e então irá salvar o comentário.
+  Ao salvar o comentário irá inserir uma linha na tabela, limpar os campos do comentário e irá manter os do
+  post, pois será possível inserir vários comentários.
 
-- [ ] Quando estiver editando um post, será possível inserir comentários também, porém se o usuário não
-      modificar nada do form do POST não será necessário fazer a chamada de edição, pois o form já tem um "POSTID"
-      que é o ID da edição,
-      caso o usuário modifique o form do POST, será necessário chamar a API de edição do post antes de inserir um novo comentário.
+- Quando estiver editando um post, será possível inserir comentários também, porém se o usuário não
+  modificar nada do form do POST não será necessário fazer a chamada de edição, pois o form já tem um "POSTID"
+  que é o ID da edição,
+  caso o usuário modifique o form do POST, será necessário chamar a API de edição do post antes de inserir um novo comentário.
 
-- [ ] O botão de salvar / salvar e continuar do modal irá submeter somente o 1º form (POST) e não irá influenciar o 2º form (COMMENTS).
+- O botão de salvar / salvar e continuar do modal irá submeter somente o 1º form (POST) e não irá influenciar o 2º form (COMMENTS).
 
 O que usar?
 
@@ -55,4 +55,4 @@ Diferenciais:
 - [x] Não utilizar ClassComponent / PureComponent
 - [ ] Traduções entre idiomas, se fizer 1 só já vale, o importante é saber usar (usar a biblioteca react-i18next)
 - [x] Ser criativo nas interfaces
-- [ ] Fazer um tema de cores com styled components
+- [x] Fazer um tema de cores com styled components
