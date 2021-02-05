@@ -9,7 +9,7 @@ export const saveComment = (comment, postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      // console.log("comments Post ", json);
+      console.log("SAVE COMMENTSSS ", json);
       return json;
     })
     .catch((err) => {

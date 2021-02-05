@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,26 +7,53 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useSelector, useDispatch } from "react-redux";
+import { commentsTypes } from "../../../../redux/types/comments";
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  container: {
+    marginTop: 20,
+  },
 });
 
-const CommentsTable = ({ comments = [] }) => {
+const CommentsTable = ({ data }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [comments, setComments] = useState([]);
+  const commentsRedux = useSelector((state) => state.comments.comment);
+
+  useEffect(() => {
+    if (data) {
+      setComments(data);
+    }
+    console.log("data", data);
+  }, [data]);
+
+  useEffect(() => {
+    console.log("commentsRedux", commentsRedux);
+    if (Object.keys(commentsRedux).length > 0) {
+      setComments([commentsRedux, ...comments]);
+      dispatch({
+        type: commentsTypes.SET_COMMENT,
+        payload: {},
+      });
+    }
+  }, [commentsRedux, comments, dispatch]);
 
   return (
     <>
       {comments.length > 0 && (
-        <TableContainer component={Paper}>
+        <TableContainer className={classes.container} component={Paper}>
           <Table
             className={classes.table}
             size="small"
             aria-label="a dense table"
           >
             <TableHead>
+              {console.log("commentsRedux", commentsRedux)}
               <TableRow>
                 <TableCell>Name</TableCell>
                 <TableCell>E-mail</TableCell>
@@ -34,8 +61,8 @@ const CommentsTable = ({ comments = [] }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {comments.map((comment) => (
-                <TableRow key={comment.id}>
+              {comments.map((comment, index) => (
+                <TableRow key={index}>
                   <TableCell>{comment.name}</TableCell>
                   <TableCell>{comment.email}</TableCell>
                   <TableCell>{comment.body}</TableCell>

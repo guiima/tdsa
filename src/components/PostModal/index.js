@@ -64,20 +64,26 @@ const PostModal = ({ post, textButton }) => {
   };
 
   useEffect(() => {
-    console.log("effectttt");
+    dispatch({
+      type: commentsTypes.SET_COMMENT,
+      payload: {},
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
     if (saveComments) {
-      // setPostFormSubmit(true);
       if (refButton && refButton.current) {
         refButton.current.click();
         setisComments(true);
+
         dispatch({
           type: commentsTypes.SAVE_COMMENT,
           payload: false,
         });
       }
+    } else {
+      setisComments(false);
     }
-
-    // return function cleanup() {};
   }, [saveComments, dispatch]);
 
   const body = (
@@ -118,6 +124,10 @@ const PostModal = ({ post, textButton }) => {
             onClick={() => {
               setSaveAndContinue(true);
               setPostFormSubmit(true);
+              dispatch({
+                type: commentsTypes.SET_COMMENT,
+                payload: {},
+              });
             }}
             className={classes.button}
           >

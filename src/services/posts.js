@@ -1,3 +1,5 @@
+import { saveComment } from "./comments";
+
 // get all posts
 export const getPosts = () => {
   return fetch("https://jsonplaceholder.typicode.com/posts")
@@ -24,14 +26,19 @@ export const getPost = ({ postId }) => {
 };
 
 // save post
-export const savePosts = (post) => {
+export const savePosts = (post, comment) => {
+  console.log("postCOMMENT", comment);
   return fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "post",
     body: JSON.stringify(post),
   })
     .then((response) => response.json())
-    .then((json) => {
-      console.log("postMethod ", json);
+    .then(async (json) => {
+      console.log("SAVE Method ", json);
+      console.log("SAVE comment ", comment);
+      if (Object.keys(comment).length > 0) {
+        await saveComment(comment, json);
+      }
       return json;
     })
     .catch((err) => {

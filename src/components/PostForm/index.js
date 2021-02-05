@@ -31,9 +31,10 @@ const AutoSubmit = () => {
 
 const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
   const classes = useStyles();
-  const saveCommentes = useSelector(
-    (state) => state.comments.saveCommentAction
-  );
+  const saveComments = useSelector((state) => state.comments.saveCommentAction);
+
+  const comment = useSelector((state) => state.comments.comment);
+
   const [initialValues] = useState({
     title: "",
     body: "",
@@ -56,7 +57,7 @@ const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
     if (data && data.id) {
       editPosts(values, data.id);
     } else {
-      savePosts(values);
+      savePosts(values, comment);
     }
   };
 
@@ -66,10 +67,10 @@ const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
       <Formik
         initialValues={data ? data : initialValues}
         onSubmit={(values, { resetForm }) => {
-          console.log("aquiii", saveCommentes);
+          console.log("aquiii", saveComments);
           console.log("aquiii3", saveAndContinue);
           handleSubmit(values);
-          if (!saveCommentes && saveAndContinue) {
+          if (!saveComments && saveAndContinue) {
             resetForm();
           }
         }}

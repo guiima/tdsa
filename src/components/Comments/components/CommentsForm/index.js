@@ -43,12 +43,12 @@ const CommentsForm = ({ postId }) => {
   });
 
   const handleSubmit = (values) => {
-    if (!postId) {
-      dispatch({
-        type: commentsTypes.SET_COMMENT,
-        payload: values,
-      });
+    dispatch({
+      type: commentsTypes.SET_COMMENT,
+      payload: values,
+    });
 
+    if (!postId) {
       dispatch({
         type: commentsTypes.SAVE_COMMENT,
         payload: true,

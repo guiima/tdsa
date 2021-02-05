@@ -22,7 +22,7 @@ const Comments = ({ postId }) => {
   return (
     <Container>
       <CommentsForm postId={postId} />
-      <CommentsTable comments={comments} />
+      <CommentsTable data={comments} />
     </Container>
   );
 };
