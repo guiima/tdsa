@@ -13,11 +13,15 @@ import { getPosts } from "../../services/posts";
 import TablePaginationActions from "./components/TablePaginationActions";
 import ButtonEdit from "../PostModal";
 import { deletePosts } from "../../services/posts";
+import { useDispatch } from "react-redux";
+import { messageTypes } from "../../redux/types/message";
 
 import { Container, useStyles } from "./styles";
 
 const TableComponent = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -45,7 +49,16 @@ const TableComponent = () => {
   };
 
   const handleDelete = (postId) => {
-    deletePosts(postId);
+    deletePosts(postId).then(() => {
+      dispatch({
+        type: messageTypes.SET_MESSAGE,
+        payload: "Post deleted successfully",
+      });
+      dispatch({
+        type: messageTypes.OPEN_MESSAGE,
+        payload: true,
+      });
+    });
   };
 
   return (
