@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import { savePosts, editPosts } from "../../services/posts";
+import { useSelector } from "react-redux";
 
 import { Container, ContentForm, TitleForm } from "./styles";
 
@@ -28,13 +29,19 @@ const AutoSubmit = () => {
   return null;
 };
 
-const PostForm = ({ toSubmit, afterSubmit, data }) => {
+const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
   const classes = useStyles();
-
+  const saveCommentes = useSelector(
+    (state) => state.comments.saveCommentAction
+  );
   const [initialValues] = useState({
     title: "",
     body: "",
   });
+
+  useEffect(() => {
+    console.log("saveandcontinue", saveAndContinue);
+  }, [saveAndContinue]);
 
   useEffect(() => {
     console.log("nopSsubmitei", toSubmit);
@@ -59,9 +66,12 @@ const PostForm = ({ toSubmit, afterSubmit, data }) => {
       <Formik
         initialValues={data ? data : initialValues}
         onSubmit={(values, { resetForm }) => {
-          console.log("aquiii");
+          console.log("aquiii", saveCommentes);
+          console.log("aquiii3", saveAndContinue);
           handleSubmit(values);
-          resetForm();
+          if (!saveCommentes && saveAndContinue) {
+            resetForm();
+          }
         }}
         validationSchema={FormSchema}
       >

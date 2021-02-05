@@ -38,11 +38,10 @@ const PostModal = ({ post, textButton }) => {
   const [modalStyle] = useState(getModalStyle);
   const [postFormSubmit, setPostFormSubmit] = useState(false);
   const [saveAndContinue, setSaveAndContinue] = useState(false);
+  const [isComments, setisComments] = useState(false);
   const dispatch = useDispatch();
 
-  const saveCommentes = useSelector(
-    (state) => state.comments.saveCommentAction
-  );
+  const saveComments = useSelector((state) => state.comments.saveCommentAction);
   const refButton = useRef();
 
   function getModalStyle() {
@@ -66,10 +65,11 @@ const PostModal = ({ post, textButton }) => {
 
   useEffect(() => {
     console.log("effectttt");
-    if (saveCommentes) {
+    if (saveComments) {
       // setPostFormSubmit(true);
       if (refButton && refButton.current) {
         refButton.current.click();
+        setisComments(true);
         dispatch({
           type: commentsTypes.SAVE_COMMENT,
           payload: false,
@@ -78,7 +78,7 @@ const PostModal = ({ post, textButton }) => {
     }
 
     // return function cleanup() {};
-  }, [saveCommentes, dispatch]);
+  }, [saveComments, dispatch]);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -91,12 +91,14 @@ const PostModal = ({ post, textButton }) => {
           <PostForm
             data={post}
             toSubmit={postFormSubmit}
+            saveAndContinue={saveAndContinue}
             afterSubmit={() => {
               setPostFormSubmit(false);
-              if (!saveAndContinue) {
+              console.log("saveComments3333", saveComments);
+              console.log("saveAndContinue3333", saveAndContinue);
+              if (!saveAndContinue && !saveComments && !isComments) {
                 setOpen(false);
               }
-              setSaveAndContinue(false);
             }}
           />
           <Comments postId={post ? post.id : undefined} />
@@ -118,7 +120,6 @@ const PostModal = ({ post, textButton }) => {
               setPostFormSubmit(true);
             }}
             className={classes.button}
-            ref={refButton}
           >
             Save and continue
           </Button>
@@ -126,17 +127,13 @@ const PostModal = ({ post, textButton }) => {
             variant="outlined"
             size="small"
             color="primary"
-            onClick={() => setPostFormSubmit(true)}
+            ref={refButton}
+            onClick={() => {
+              setSaveAndContinue(false);
+              setPostFormSubmit(true);
+            }}
           >
             Save
-          </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            color="primary"
-            onClick={() => setPostFormSubmit(true)}
-          >
-            teste
           </Button>
         </FooterModal>
       </Container>
