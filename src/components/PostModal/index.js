@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -64,6 +64,7 @@ const PostModal = ({ post, textButton }) => {
         </HeaderModal>
         <BodyModal>
           <PostForm
+            data={post}
             toSubmit={postFormSubmit}
             afterSubmit={() => {
               setPostFormSubmit(false);

@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getPosts } from "../../services/posts";
 import TablePaginationActions from "./components/TablePaginationActions";
 import ButtonEdit from "../PostModal";
+import { deletePosts } from "../../services/posts";
 
 import { Container } from "./styles";
 
@@ -52,6 +53,10 @@ const TableComponent = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const handleDelete = (postId) => {
+    deletePosts(postId);
   };
 
   return (
@@ -94,7 +99,7 @@ const TableComponent = () => {
                     size="small"
                     color="secondary"
                     className={classes.margin}
-                    onClick={() => console.log("delete postId", post.id)}
+                    onClick={() => handleDelete(post.id)}
                   >
                     Delete
                   </Button>

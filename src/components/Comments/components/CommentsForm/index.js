@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,30 +19,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AutoSubmitToken = () => {
+const AutoSubmit = ({ afterSubmit }) => {
   const { submitForm } = useFormikContext();
 
   React.useEffect(() => {
     submitForm();
-  }, [submitForm]);
+    afterSubmit();
+  }, [submitForm, afterSubmit]);
   return null;
 };
 
-const CommentsForm = ({ toSubmit, afterSubmit }) => {
+const CommentsForm = () => {
   const classes = useStyles();
+  const [toSubmit, setToSubmit] = useState(false);
   const [initialValues] = useState({
     name: "",
     email: "",
     body: "",
   });
 
-  useEffect(() => {
-    console.log("nopSsubmitei", toSubmit);
-    if (toSubmit) {
-      console.log("submitei", toSubmit);
-      afterSubmit();
-    }
-  }, [toSubmit, afterSubmit]);
+  const handleSubmit = (values) => {
+    console.log("submit commnets", values);
+  };
 
   return (
     <Container>
@@ -52,14 +50,17 @@ const CommentsForm = ({ toSubmit, afterSubmit }) => {
           variant="outlined"
           size="small"
           color="primary"
-          onClick={() => console.log("inserir")}
+          onClick={() => setToSubmit(true)}
         >
           Insert comment
         </Button>
       </Header>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => console.log("valuesss comments", values)}
+        onSubmit={(values, { resetForm }) => {
+          handleSubmit(values);
+          resetForm();
+        }}
         validationSchema={FormSchema}
       >
         {({ handleChange, errors, handleSubmit, values, touched }) => (
@@ -95,7 +96,7 @@ const CommentsForm = ({ toSubmit, afterSubmit }) => {
               className={classes.input}
             />
             {errors.body && touched.body && <h3>{errors.body}</h3>}
-            {toSubmit && <AutoSubmitToken />}
+            {toSubmit && <AutoSubmit afterSubmit={() => setToSubmit(false)} />}
           </ContentForm>
         )}
       </Formik>

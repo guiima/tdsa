@@ -3,6 +3,7 @@ import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
+import { savePosts, editPosts } from "../../services/posts";
 
 import { Container, ContentForm, TitleForm } from "./styles";
 
@@ -17,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AutoSubmitToken = () => {
+const AutoSubmit = () => {
   const { submitForm } = useFormikContext();
 
   React.useEffect(() => {
@@ -26,9 +27,9 @@ const AutoSubmitToken = () => {
   return null;
 };
 
-const PostForm = ({ toSubmit, afterSubmit }) => {
+const PostForm = ({ toSubmit, afterSubmit, data }) => {
   const classes = useStyles();
-  const [initialValues] = useState({
+  const [initialValues, setInitialValues] = useState({
     title: "",
     body: "",
   });
@@ -41,13 +42,28 @@ const PostForm = ({ toSubmit, afterSubmit }) => {
     }
   }, [toSubmit, afterSubmit]);
 
+  const handleSubmit = (values) => {
+    console.log("valuesss", values);
+    if (data && data.id) {
+      editPosts(values, data.id);
+    } else {
+      savePosts(values);
+    }
+  };
+
   return (
     <Container>
       <TitleForm>Post</TitleForm>
+      {console.log("data", data)}
       <Formik
-        initialValues={initialValues}
+        initialValues={data ? data : initialValues}
         onSubmit={(values, { resetForm }) => {
-          console.log("valuesss", values);
+          handleSubmit(values);
+          console.log("aquii");
+          setInitialValues({
+            title: "",
+            body: "",
+          });
           resetForm();
         }}
         validationSchema={FormSchema}
@@ -75,7 +91,7 @@ const PostForm = ({ toSubmit, afterSubmit }) => {
               className={classes.input}
             />
             {errors.body && touched.body && <h3>{errors.body}</h3>}
-            {toSubmit && <AutoSubmitToken />}
+            {toSubmit && <AutoSubmit />}
           </ContentForm>
         )}
       </Formik>
