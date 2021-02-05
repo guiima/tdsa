@@ -46,7 +46,10 @@ const PostForm = ({ toSubmit, afterSubmit }) => {
       <TitleForm>Post</TitleForm>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => console.log("valuesss", values)}
+        onSubmit={(values, { resetForm }) => {
+          console.log("valuesss", values);
+          resetForm();
+        }}
         validationSchema={FormSchema}
       >
         {({ handleChange, errors, handleSubmit, values, touched }) => (

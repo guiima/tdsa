@@ -35,6 +35,7 @@ const PostModal = ({ post, textButton }) => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [postFormSubmit, setPostFormSubmit] = useState(false);
+  const [saveAndContinue, setSaveAndContinue] = useState(false);
 
   function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -70,7 +71,10 @@ const PostModal = ({ post, textButton }) => {
             toSubmit={postFormSubmit}
             afterSubmit={() => {
               setPostFormSubmit(false);
-              setOpen(false);
+              if (!saveAndContinue) {
+                setOpen(false);
+              }
+              setSaveAndContinue(false);
             }}
           />
           <Comments />
@@ -87,7 +91,10 @@ const PostModal = ({ post, textButton }) => {
           <Button
             variant="outlined"
             size="small"
-            onClick={() => console.log("save and continue")}
+            onClick={() => {
+              setSaveAndContinue(true);
+              setPostFormSubmit(true);
+            }}
             className={classes.button}
           >
             Save and continue
