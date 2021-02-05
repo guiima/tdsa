@@ -4,9 +4,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import PostForm from "../PostForm";
-import CommentsForm from "../CommentsForm";
+import Comments from "../Comments";
 
-import { Container, HeaderModal, BodyModal, FooterModal } from "./styles";
+import {
+  Container,
+  HeaderModal,
+  BodyModal,
+  FooterModal,
+  TitleModal,
+} from "./styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,7 +35,6 @@ const PostModal = ({ post, textButton }) => {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
   const [postFormSubmit, setPostFormSubmit] = useState(false);
-  const [postFormClearFields, setPostFormClearFields] = useState(false);
 
   function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -57,17 +62,18 @@ const PostModal = ({ post, textButton }) => {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Container>
-        <HeaderModal>{post ? "Edit Post" : "New Post"}</HeaderModal>
+        <HeaderModal>
+          <TitleModal>{post ? "Edit Post" : "New Post"}</TitleModal>
+        </HeaderModal>
         <BodyModal>
           <PostForm
             toSubmit={postFormSubmit}
-            resetForm={postFormClearFields}
             afterSubmit={() => {
               setPostFormSubmit(false);
               setOpen(false);
             }}
           />
-          <CommentsForm />
+          <Comments />
         </BodyModal>
         <FooterModal>
           <Button

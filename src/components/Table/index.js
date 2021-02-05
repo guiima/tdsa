@@ -11,7 +11,7 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import { makeStyles } from "@material-ui/core/styles";
 import { getPosts } from "../../services/posts";
-import TablePaginationActions from "./TablePaginationActions";
+import TablePaginationActions from "./components/TablePaginationActions";
 import ButtonEdit from "../PostModal";
 
 import { Container } from "./styles";

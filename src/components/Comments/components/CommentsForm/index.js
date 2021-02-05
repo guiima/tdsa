@@ -3,11 +3,13 @@ import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
+import Button from "@material-ui/core/Button";
 
-import { Container, ContentForm, TitleForm } from "./styles";
+import { Container, ContentForm, TitleForm, Header } from "./styles";
 
 const FormSchema = Yup.object().shape({
-  title: Yup.string().required(),
+  name: Yup.string().required(),
+  email: Yup.string().required(),
   body: Yup.string().required(),
 });
 
@@ -26,10 +28,11 @@ const AutoSubmitToken = () => {
   return null;
 };
 
-const PostForm = ({ toSubmit, afterSubmit }) => {
+const CommentsForm = ({ toSubmit, afterSubmit }) => {
   const classes = useStyles();
   const [initialValues] = useState({
-    title: "",
+    name: "",
+    email: "",
     body: "",
   });
 
@@ -43,23 +46,43 @@ const PostForm = ({ toSubmit, afterSubmit }) => {
 
   return (
     <Container>
-      <TitleForm>Post</TitleForm>
+      <Header>
+        <TitleForm>Comments</TitleForm>
+        <Button
+          variant="outlined"
+          size="small"
+          color="primary"
+          onClick={() => console.log("inserir")}
+        >
+          Insert comment
+        </Button>
+      </Header>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => console.log("valuesss", values)}
+        onSubmit={(values) => console.log("valuesss comments", values)}
         validationSchema={FormSchema}
       >
         {({ handleChange, errors, handleSubmit, values, touched }) => (
           <ContentForm>
             <TextField
-              label="title"
+              label="name"
               type="text"
-              value={values.title}
-              onChange={handleChange("title")}
+              value={values.name}
+              onChange={handleChange("name")}
               variant="outlined"
               className={classes.input}
             />
-            {errors.title && touched.title && <h3>{errors.title}</h3>}
+            {errors.name && touched.name && <h3>{errors.name}</h3>}
+
+            <TextField
+              label="email"
+              type="text"
+              value={values.email}
+              onChange={handleChange("email")}
+              variant="outlined"
+              className={classes.input}
+            />
+            {errors.email && touched.email && <h3>{errors.email}</h3>}
 
             <TextField
               label="body"
@@ -80,4 +103,4 @@ const PostForm = ({ toSubmit, afterSubmit }) => {
   );
 };
 
-export default PostForm;
+export default CommentsForm;

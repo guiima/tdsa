@@ -10,7 +10,7 @@
 - [x] O de salvar irá fazer submit no form e fechar o modal.
 - [ ] O de salvar e continuar ira salvar, limpar os campos e continuar no modal.
 - [ ] O modal deve ter 2 forms, sendo o 1º o form principal e o 2º como form secundário.
-- [ ] O 2º form deve ter os campos, uma tabela e um botão de inserir.
+- [x] O 2º form deve ter os campos, uma tabela e um botão de inserir.
 - [ ] Quando clicar no botão de inserir do segundo form, caso não esteja fazendo uma edição, o mesmo deverá salvar o 1º
       form e só então poderá salvar o 2º form. Caso esteja fazendo uma edição, poderá salvar normalmente.
 - [ ] Para cada inserção do segundo form, os campos serão limpos e uma linha sera inserida na tabela.

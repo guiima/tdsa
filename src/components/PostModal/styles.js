@@ -1,12 +1,24 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  max-height: 500px;
+  overflow: scroll;
+  padding: 0px 20px;
+`;
 
-export const HeaderModal = styled.div``;
+export const HeaderModal = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const TitleModal = styled.h2``;
 
 export const BodyModal = styled.div``;
 
 export const FooterModal = styled.div`
   display: flex;
   justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
