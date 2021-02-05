@@ -23,36 +23,29 @@ const AutoSubmit = () => {
 
   React.useEffect(() => {
     submitForm();
+    console.log("autosubmit");
   }, [submitForm]);
   return null;
 };
 
 const PostForm = ({ toSubmit, afterSubmit, data }) => {
   const classes = useStyles();
-  const [post, setPost] = useState({});
+
   const [initialValues] = useState({
     title: "",
     body: "",
   });
 
   useEffect(() => {
-    setPost(data);
-  }, [data]);
-
-  useEffect(() => {
-    console.log("post", post);
-  }, [post]);
-
-  useEffect(() => {
     console.log("nopSsubmitei", toSubmit);
     if (toSubmit) {
-      console.log("submitei", toSubmit);
+      console.log("submitei2", toSubmit);
       afterSubmit();
     }
   }, [toSubmit, afterSubmit]);
 
   const handleSubmit = (values) => {
-    console.log("valuesss", values);
+    console.log("submit post form", values);
     if (data && data.id) {
       editPosts(values, data.id);
     } else {
@@ -63,12 +56,11 @@ const PostForm = ({ toSubmit, afterSubmit, data }) => {
   return (
     <Container>
       <TitleForm>Post</TitleForm>
-      {console.log("data", data)}
       <Formik
         initialValues={data ? data : initialValues}
         onSubmit={(values, { resetForm }) => {
+          console.log("aquiii");
           handleSubmit(values);
-          console.log("aquii");
           resetForm();
         }}
         validationSchema={FormSchema}

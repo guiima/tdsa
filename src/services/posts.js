@@ -15,7 +15,7 @@ export const getPost = ({ postId }) => {
   return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
     .then((response) => response.json())
     .then((json) => {
-      console.log("postssss", json);
+      // console.log("postssss", json);
       return json;
     })
     .catch((err) => {
@@ -47,7 +47,7 @@ export const editPosts = (post, postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log("pUtMethod ", json);
+      // console.log("pUtMethod ", json);
       return json;
     })
     .catch((err) => {
@@ -62,7 +62,7 @@ export const deletePosts = (postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log("DeleteMethod ", json);
+      // console.log("DeleteMethod ", json);
       return json;
     })
     .catch((err) => {

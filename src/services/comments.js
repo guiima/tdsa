@@ -9,7 +9,7 @@ export const saveComment = (comment, postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log("comments Post ", json);
+      // console.log("comments Post ", json);
       return json;
     })
     .catch((err) => {
@@ -23,7 +23,7 @@ export const getComments = (postId) => {
   return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
     .then((response) => response.json())
     .then((json) => {
-      console.log("get comments Post ", json);
+      // console.log("get comments Post ", json);
       return json;
     })
     .catch((err) => {

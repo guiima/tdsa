@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { commentsTypes } from "../../redux/types/comments";
 
 import PostForm from "../PostForm";
 import Comments from "../Comments";
@@ -36,6 +38,12 @@ const PostModal = ({ post, textButton }) => {
   const [modalStyle] = useState(getModalStyle);
   const [postFormSubmit, setPostFormSubmit] = useState(false);
   const [saveAndContinue, setSaveAndContinue] = useState(false);
+  const dispatch = useDispatch();
+
+  const saveCommentes = useSelector(
+    (state) => state.comments.saveCommentAction
+  );
+  const refButton = useRef();
 
   function getModalStyle() {
     const top = 50;
@@ -56,9 +64,26 @@ const PostModal = ({ post, textButton }) => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    console.log("effectttt");
+    if (saveCommentes) {
+      // setPostFormSubmit(true);
+      if (refButton && refButton.current) {
+        refButton.current.click();
+        dispatch({
+          type: commentsTypes.SAVE_COMMENT,
+          payload: false,
+        });
+      }
+    }
+
+    // return function cleanup() {};
+  }, [saveCommentes, dispatch]);
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Container>
+        {console.log("open", open)}
         <HeaderModal>
           <TitleModal>{post ? "Edit Post" : "New Post"}</TitleModal>
         </HeaderModal>
@@ -93,6 +118,7 @@ const PostModal = ({ post, textButton }) => {
               setPostFormSubmit(true);
             }}
             className={classes.button}
+            ref={refButton}
           >
             Save and continue
           </Button>
@@ -103,6 +129,14 @@ const PostModal = ({ post, textButton }) => {
             onClick={() => setPostFormSubmit(true)}
           >
             Save
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            onClick={() => setPostFormSubmit(true)}
+          >
+            teste
           </Button>
         </FooterModal>
       </Container>
