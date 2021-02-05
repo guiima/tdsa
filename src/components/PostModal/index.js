@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -17,7 +17,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    maxWidth: 600,
+    maxWidth: 800,
     width: "100%",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
@@ -74,7 +74,7 @@ const PostModal = ({ post, textButton }) => {
               setSaveAndContinue(false);
             }}
           />
-          <Comments />
+          <Comments postId={post ? post.id : undefined} />
         </BodyModal>
         <FooterModal>
           <Button

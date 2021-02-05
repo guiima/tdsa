@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import Button from "@material-ui/core/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { commentsTypes } from "../../../../redux/types/comments";
 
 import { Container, ContentForm, TitleForm, Header } from "./styles";
 
@@ -29,9 +31,11 @@ const AutoSubmit = ({ afterSubmit }) => {
   return null;
 };
 
-const CommentsForm = () => {
+const CommentsForm = ({ postId }) => {
   const classes = useStyles();
   const [toSubmit, setToSubmit] = useState(false);
+  const dispatch = useDispatch();
+  const commentes = useSelector((state) => state.comments.comment);
   const [initialValues] = useState({
     name: "",
     email: "",
@@ -40,11 +44,17 @@ const CommentsForm = () => {
 
   const handleSubmit = (values) => {
     console.log("submit commnets", values);
+    dispatch({
+      type: commentsTypes.SET_COMMENT,
+      payload: values,
+    });
   };
 
   return (
     <Container>
       <Header>
+        {console.log("commentssss redux", commentes)}
+
         <TitleForm>Comments</TitleForm>
         <Button
           variant="outlined"
@@ -63,7 +73,7 @@ const CommentsForm = () => {
         }}
         validationSchema={FormSchema}
       >
-        {({ handleChange, errors, handleSubmit, values, touched }) => (
+        {({ handleChange, errors, values, touched }) => (
           <ContentForm>
             <TextField
               label="name"

@@ -29,10 +29,19 @@ const AutoSubmit = () => {
 
 const PostForm = ({ toSubmit, afterSubmit, data }) => {
   const classes = useStyles();
-  const [initialValues, setInitialValues] = useState({
+  const [post, setPost] = useState({});
+  const [initialValues] = useState({
     title: "",
     body: "",
   });
+
+  useEffect(() => {
+    setPost(data);
+  }, [data]);
+
+  useEffect(() => {
+    console.log("post", post);
+  }, [post]);
 
   useEffect(() => {
     console.log("nopSsubmitei", toSubmit);
@@ -60,15 +69,11 @@ const PostForm = ({ toSubmit, afterSubmit, data }) => {
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
           console.log("aquii");
-          setInitialValues({
-            title: "",
-            body: "",
-          });
           resetForm();
         }}
         validationSchema={FormSchema}
       >
-        {({ handleChange, errors, handleSubmit, values, touched }) => (
+        {({ handleChange, errors, values, touched }) => (
           <ContentForm>
             <TextField
               label="title"

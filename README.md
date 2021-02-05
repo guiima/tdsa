@@ -39,7 +39,7 @@ O que usar?
 - [x] Fetch (não utilizar Axios)
 - [x] Javascript (Typescript é diferencial, não usamos no projeto)
 - [x] MaterialUI
-- [ ] React-hook-form ou Formik
+- [x] React-hook-form ou Formik
 - [ ] Redux (se necessário)
 - [x] Styled-components ou SCSS
 - [x] Fazer commits constantes, para cada feature
