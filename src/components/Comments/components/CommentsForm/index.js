@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import Button from "@material-ui/core/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { commentsTypes } from "../../../../redux/types/comments";
 
 import { Container, ContentForm, TitleForm, Header } from "./styles";
@@ -31,16 +31,37 @@ const AutoSubmit = ({ afterSubmit }) => {
   return null;
 };
 
+const AutoClear = ({ afterSubmit }) => {
+  const { resetForm } = useFormikContext();
+
+  React.useEffect(() => {
+    resetForm();
+    afterSubmit();
+  }, [resetForm, afterSubmit]);
+  return null;
+};
+
 const CommentsForm = ({ postId }) => {
   const classes = useStyles();
   const [toSubmit, setToSubmit] = useState(false);
+  const [toClear, setToClear] = useState(false);
   const dispatch = useDispatch();
-
+  const clearForm = useSelector((state) => state.comments.clearFormComments);
   const [initialValues] = useState({
     name: "",
     email: "",
     body: "",
   });
+
+  useEffect(() => {
+    if (clearForm) {
+      setToClear(true);
+      dispatch({
+        type: commentsTypes.CLEAR_COMMENT,
+        payload: false,
+      });
+    }
+  }, [clearForm, dispatch]);
 
   const handleSubmit = (values) => {
     dispatch({
@@ -111,6 +132,7 @@ const CommentsForm = ({ postId }) => {
             />
             {errors.body && touched.body && <h3>{errors.body}</h3>}
             {toSubmit && <AutoSubmit afterSubmit={() => setToSubmit(false)} />}
+            {toClear && <AutoClear afterSubmit={() => setToClear(false)} />}
           </ContentForm>
         )}
       </Formik>

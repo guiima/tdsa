@@ -14,7 +14,7 @@
 - [x] Quando clicar no botão de inserir do segundo form, caso não esteja fazendo uma edição, o mesmo deverá salvar o 1º form e só então poderá salvar o 2º form. Caso esteja fazendo uma edição, poderá salvar normalmente.
 - [x] Para cada inserção do segundo form, os campos serão limpos e uma linha sera inserida na tabela.
 - [ ] Para poder inserir o 2º form, deve conter o ID do 1º form. Ou seja, quando estiver editando deverá conter o ID da edição e quando for inserção, deverá conter o ID retornado da API de inserção.
-- [ ] Ao salvar e continuar, deverá limpar todos os campos do primeiro form e do segundo form (a tabela também).
+- [x] Ao salvar e continuar, deverá limpar todos os campos do primeiro form e do segundo form (a tabela também).
 - [x] Ao fechar o modal, todos os dados que estavam no modal devem ser limpos para quando abrir o modal novamente vir zerado.
 
 Exemplo pratico com as API's do jsonplaceholder:

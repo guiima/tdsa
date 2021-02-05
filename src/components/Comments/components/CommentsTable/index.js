@@ -24,6 +24,7 @@ const CommentsTable = ({ data }) => {
   const dispatch = useDispatch();
   const [comments, setComments] = useState([]);
   const commentsRedux = useSelector((state) => state.comments.comment);
+  const clearTable = useSelector((state) => state.comments.clearTableComments);
 
   useEffect(() => {
     if (data) {
@@ -42,6 +43,16 @@ const CommentsTable = ({ data }) => {
       });
     }
   }, [commentsRedux, comments, dispatch]);
+
+  useEffect(() => {
+    if (clearTable) {
+      setComments([]);
+      dispatch({
+        type: commentsTypes.CLEAR_TABLE_COMMENT,
+        payload: false,
+      });
+    }
+  }, [clearTable, dispatch]);
 
   return (
     <>

@@ -128,6 +128,14 @@ const PostModal = ({ post, textButton }) => {
                 type: commentsTypes.SET_COMMENT,
                 payload: {},
               });
+              dispatch({
+                type: commentsTypes.CLEAR_COMMENT,
+                payload: true,
+              });
+              dispatch({
+                type: commentsTypes.CLEAR_TABLE_COMMENT,
+                payload: true,
+              });
             }}
             className={classes.button}
           >
