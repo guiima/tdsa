@@ -9,19 +9,12 @@ import TableHead from "@material-ui/core/TableHead";
 import Button from "@material-ui/core/Button";
 import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
-import { makeStyles } from "@material-ui/core/styles";
 import { getPosts } from "../../services/posts";
 import TablePaginationActions from "./components/TablePaginationActions";
 import ButtonEdit from "../PostModal";
 import { deletePosts } from "../../services/posts";
 
-import { Container } from "./styles";
-
-const useStyles = makeStyles({
-  table: {
-    maxWidth: 950,
-  },
-});
+import { Container, useStyles } from "./styles";
 
 const TableComponent = () => {
   const classes = useStyles();
@@ -30,13 +23,9 @@ const TableComponent = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const getAllPosts = () => {
-    getPosts()
-      .then((response) => {
-        setPosts(response);
-      })
-      .catch((err) => {
-        console.log("err");
-      });
+    getPosts().then((response) => {
+      setPosts(response);
+    });
   };
 
   useEffect(() => {

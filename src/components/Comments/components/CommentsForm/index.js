@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import * as Yup from "yup";
 import Button from "@material-ui/core/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { commentsTypes } from "../../../../redux/types/comments";
 
-import { Container, ContentForm, TitleForm, Header } from "./styles";
+import { Container, ContentForm, TitleForm, Header, useStyles } from "./styles";
 
 const FormSchema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().required(),
   body: Yup.string().required(),
 });
-
-const useStyles = makeStyles(() => ({
-  input: {
-    marginTop: 10,
-  },
-}));
 
 const AutoSubmit = ({ afterSubmit }) => {
   const { submitForm } = useFormikContext();

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { commentsTypes } from "../../redux/types/comments";
@@ -14,23 +13,8 @@ import {
   BodyModal,
   FooterModal,
   TitleModal,
+  useStyles,
 } from "./styles";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: "absolute",
-    maxWidth: 800,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-  button: {
-    color: "green",
-    borderColor: "green",
-  },
-}));
 
 const PostModal = ({ post, textButton }) => {
   const classes = useStyles();
@@ -89,7 +73,6 @@ const PostModal = ({ post, textButton }) => {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Container>
-        {console.log("open", open)}
         <HeaderModal>
           <TitleModal>{post ? "Edit Post" : "New Post"}</TitleModal>
         </HeaderModal>
@@ -100,8 +83,6 @@ const PostModal = ({ post, textButton }) => {
             saveAndContinue={saveAndContinue}
             afterSubmit={() => {
               setPostFormSubmit(false);
-              console.log("saveComments3333", saveComments);
-              console.log("saveAndContinue3333", saveAndContinue);
               if (!saveAndContinue && !saveComments && !isComments) {
                 setOpen(false);
               }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const Container = styled.div`
   margin-top: 20px;
@@ -17,3 +18,9 @@ export const Header = styled.div`
   align-items: center;
   margin: 8px 0px;
 `;
+
+export const useStyles = makeStyles(() => ({
+  input: {
+    marginTop: 10,
+  },
+}));

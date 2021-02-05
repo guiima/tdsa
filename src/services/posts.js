@@ -17,7 +17,6 @@ export const getPost = ({ postId }) => {
   return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
     .then((response) => response.json())
     .then((json) => {
-      // console.log("postssss", json);
       return json;
     })
     .catch((err) => {
@@ -27,15 +26,12 @@ export const getPost = ({ postId }) => {
 
 // save post
 export const savePosts = (post, comment) => {
-  console.log("postCOMMENT", comment);
   return fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "post",
     body: JSON.stringify(post),
   })
     .then((response) => response.json())
     .then(async (json) => {
-      console.log("SAVE Method ", json);
-      console.log("SAVE comment ", comment);
       if (Object.keys(comment).length > 0) {
         await saveComment(comment, json);
       }
@@ -54,7 +50,6 @@ export const editPosts = (post, postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      // console.log("pUtMethod ", json);
       return json;
     })
     .catch((err) => {
@@ -69,7 +64,6 @@ export const deletePosts = (postId) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      // console.log("DeleteMethod ", json);
       return json;
     })
     .catch((err) => {

@@ -10,13 +10,9 @@ const Comments = ({ postId }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    getComments(postId)
-      .then((response) => {
-        setComments(response);
-      })
-      .catch((err) => {
-        console.log("err", Error);
-      });
+    getComments(postId).then((response) => {
+      setComments(response);
+    });
   }, [postId]);
 
   return (

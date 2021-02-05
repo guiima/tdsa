@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -10,14 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import { useSelector, useDispatch } from "react-redux";
 import { commentsTypes } from "../../../../redux/types/comments";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-  container: {
-    marginTop: 20,
-  },
-});
+import { useStyles } from "./styles";
 
 const CommentsTable = ({ data }) => {
   const classes = useStyles();
@@ -30,11 +22,9 @@ const CommentsTable = ({ data }) => {
     if (data) {
       setComments(data);
     }
-    console.log("data", data);
   }, [data]);
 
   useEffect(() => {
-    console.log("commentsRedux", commentsRedux);
     if (Object.keys(commentsRedux).length > 0) {
       setComments([commentsRedux, ...comments]);
       dispatch({
@@ -64,7 +54,6 @@ const CommentsTable = ({ data }) => {
             aria-label="a dense table"
           >
             <TableHead>
-              {console.log("commentsRedux", commentsRedux)}
               <TableRow>
                 <TableCell>Name</TableCell>
                 <TableCell>E-mail</TableCell>
