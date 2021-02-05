@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Formik } from "formik";
+import React, { useState, useEffect } from "react";
+import { Formik, useFormikContext } from "formik";
 import TextField from "@material-ui/core/TextField";
 import { Container, ContentForm } from "./styles";
 import * as Yup from "yup";
@@ -9,11 +9,28 @@ const FormSchema = Yup.object().shape({
   body: Yup.string().required(),
 });
 
-const PostForm = () => {
+const AutoSubmitToken = () => {
+  const { submitForm } = useFormikContext();
+
+  React.useEffect(() => {
+    submitForm();
+  }, [submitForm]);
+  return null;
+};
+
+const PostForm = ({ toSubmit, toResetForm, afterSubmit }) => {
   const [initialValues] = useState({
     title: "",
     body: "",
   });
+
+  useEffect(() => {
+    console.log("nopSsubmitei", toSubmit);
+    if (toSubmit) {
+      console.log("submitei", toSubmit);
+      afterSubmit();
+    }
+  }, [toSubmit, afterSubmit]);
 
   return (
     <Container>
@@ -22,7 +39,7 @@ const PostForm = () => {
         onSubmit={(values) => console.log("valuesss", values)}
         validationSchema={FormSchema}
       >
-        {({ handleChange, errors, handleSubmit, values }) => (
+        {({ handleChange, errors, handleSubmit, values, touched }) => (
           <ContentForm>
             <TextField
               label="title"
@@ -31,7 +48,7 @@ const PostForm = () => {
               onChange={handleChange("title")}
               variant="outlined"
             />
-            {errors.title && <h3>{errors.title}</h3>}
+            {errors.title && touched.title && <h3>{errors.title}</h3>}
 
             <TextField
               label="Body"
@@ -42,9 +59,8 @@ const PostForm = () => {
               rows={4}
               variant="outlined"
             />
-            {errors.body && <h3>{errors.body}</h3>}
-
-            <button onClick={handleSubmit}>salvar</button>
+            {errors.body && touched.body && <h3>{errors.body}</h3>}
+            {toSubmit && <AutoSubmitToken />}
           </ContentForm>
         )}
       </Formik>

@@ -7,7 +7,7 @@
       titulo dizendo se esta editando ou inserindo um novo item.
 - [x] O footer do modal deve ter um botao de fechar, salvar e um salvar e continuar.
 - [x] O botao fechar, fecha o modal.
-- [ ] O de salvar irá fazer submit no form e fechar o modal.
+- [x] O de salvar irá fazer submit no form e fechar o modal.
 - [ ] O de salvar e continuar ira salvar, limpar os campos e continuar no modal.
 - [ ] O modal deve ter 2 forms, sendo o 1º o form principal e o 2º como form secundário.
 - [ ] O 2º form deve ter os campos, uma tabela e um botão de inserir.

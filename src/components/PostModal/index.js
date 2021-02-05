@@ -28,6 +28,8 @@ const PostModal = ({ post, textButton }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
+  const [postFormSubmit, setPostFormSubmit] = useState(false);
+  const [postFormClearFields, setPostFormClearFields] = useState(false);
 
   function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -55,10 +57,16 @@ const PostModal = ({ post, textButton }) => {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Container>
-        {console.log("pos", post)}
         <HeaderModal>{post ? "Edit Post" : "New Post"}</HeaderModal>
         <BodyModal>
-          <PostForm />
+          <PostForm
+            toSubmit={postFormSubmit}
+            resetForm={postFormClearFields}
+            afterSubmit={() => {
+              setPostFormSubmit(false);
+              setOpen(false);
+            }}
+          />
           <CommentsForm />
         </BodyModal>
         <FooterModal>
@@ -82,7 +90,7 @@ const PostModal = ({ post, textButton }) => {
             variant="outlined"
             size="small"
             color="primary"
-            onClick={() => console.log("save")}
+            onClick={() => setPostFormSubmit(true)}
           >
             Save
           </Button>
