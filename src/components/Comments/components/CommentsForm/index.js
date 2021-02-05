@@ -6,7 +6,14 @@ import Button from "@material-ui/core/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { commentsTypes } from "../../../../redux/types/comments";
 
-import { Container, ContentForm, TitleForm, Header, useStyles } from "./styles";
+import {
+  Container,
+  ContentForm,
+  TitleForm,
+  Header,
+  useStyles,
+  Erros,
+} from "./styles";
 
 const FormSchema = Yup.object().shape({
   name: Yup.string().required(),
@@ -101,7 +108,7 @@ const CommentsForm = ({ postId }) => {
               variant="outlined"
               className={classes.input}
             />
-            {errors.name && touched.name && <h3>{errors.name}</h3>}
+            {errors.name && touched.name && <Erros>{errors.name}</Erros>}
 
             <TextField
               label="email"
@@ -111,7 +118,7 @@ const CommentsForm = ({ postId }) => {
               variant="outlined"
               className={classes.input}
             />
-            {errors.email && touched.email && <h3>{errors.email}</h3>}
+            {errors.email && touched.email && <Erros>{errors.email}</Erros>}
 
             <TextField
               label="body"
@@ -123,7 +130,7 @@ const CommentsForm = ({ postId }) => {
               variant="outlined"
               className={classes.input}
             />
-            {errors.body && touched.body && <h3>{errors.body}</h3>}
+            {errors.body && touched.body && <Erros>{errors.body}</Erros>}
             {toSubmit && <AutoSubmit afterSubmit={() => setToSubmit(false)} />}
             {toClear && <AutoClear afterSubmit={() => setToClear(false)} />}
           </ContentForm>

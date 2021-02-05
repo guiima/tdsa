@@ -10,6 +10,11 @@ export const ContentForm = styled.div`
 
 export const TitleForm = styled.h3``;
 
+export const Erros = styled.span`
+  font-size: 14px;
+  color: ${(props) => props.theme.colors.background};
+`;
+
 export const useStyles = makeStyles(() => ({
   input: {
     marginTop: 10,

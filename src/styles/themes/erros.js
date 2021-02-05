@@ -1,8 +1,7 @@
 const theme = {
-  title: "global",
-
+  title: "erros",
   colors: {
-    // background: "#fef",
+    background: "#ee5253",
   },
 };
 

@@ -19,6 +19,11 @@ export const Header = styled.div`
   margin: 8px 0px;
 `;
 
+export const Erros = styled.span`
+  font-size: 14px;
+  color: ${(props) => props.theme.colors.background};
+`;
+
 export const useStyles = makeStyles(() => ({
   input: {
     marginTop: 10,

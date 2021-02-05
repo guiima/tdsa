@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { savePosts, editPosts } from "../../services/posts";
 import { useSelector } from "react-redux";
 
-import { Container, ContentForm, TitleForm, useStyles } from "./styles";
+import { Container, ContentForm, TitleForm, useStyles, Erros } from "./styles";
 
 const FormSchema = Yup.object().shape({
   title: Yup.string().required(),
@@ -70,7 +70,7 @@ const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
               variant="outlined"
               className={classes.input}
             />
-            {errors.title && touched.title && <h3>{errors.title}</h3>}
+            {errors.title && touched.title && <Erros>{errors.title}</Erros>}
 
             <TextField
               label="body"
@@ -82,7 +82,7 @@ const PostForm = ({ toSubmit, afterSubmit, data, saveAndContinue }) => {
               variant="outlined"
               className={classes.input}
             />
-            {errors.body && touched.body && <h3>{errors.body}</h3>}
+            {errors.body && touched.body && <Erros>{errors.body}</Erros>}
             {toSubmit && <AutoSubmit />}
           </ContentForm>
         )}
